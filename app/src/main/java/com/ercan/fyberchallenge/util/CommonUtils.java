@@ -1,6 +1,7 @@
 package com.ercan.fyberchallenge.util;
 
 import com.ercan.fyberchallenge.data.model.RequestParam;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class CommonUtils {
      * Returns current Unix timestamp
      * @return unix timestamp
      */
-    public static long getUnixTimeStamp(){
-        return System.currentTimeMillis() / 1000L;
+    public static String getUnixTimeStamp() {
+        return String.valueOf(System.currentTimeMillis() / 1000L);
     }
 }

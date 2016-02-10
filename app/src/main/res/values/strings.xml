@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">FyberChallenge</string>
+    <string name="input_uid">UID</string>
+    <string name="input_apikey">Api Key</string>
+    <string name="input_app_id">App ID</string>
+    <string name="input_pub0">Pub0</string>
+    <string name="input_submit">submit</string>
+    <string name="warn_input_apikey">The Api Key field must be filled.</string>
+    <string name="warn_get_offers_failed">Offers can not be fetched.</string>
 </resources>

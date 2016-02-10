@@ -1,62 +1,64 @@
 package com.ercan.fyberchallenge.util;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
  * This class produces Sha1 hashes based on a given String
- * @author lupin
+ * @author Francesco Rigoni
  *
  */
 public class Sha1 {
 
-    public static String getHash(String str) {
-        MessageDigest digest = null;
-        byte[] input = null;
+
+    /**
+     * Returns the SHA1 hash for the provided String
+     *
+     * @param text
+     * @return the SHA1 hash or null if an error occurs
+     */
+    public static String getHash(String text) {
 
         try {
-            digest = MessageDigest.getInstance("SHA-1");
-            digest.reset();
-            input = digest.digest(str.getBytes("UTF-8"));
 
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+            MessageDigest md;
+            md = MessageDigest.getInstance("SHA-1");
+            md.update(text.getBytes(),
+                    0, text.length());
+            byte[] sha1hash = md.digest();
+
+            return toHex(sha1hash);
+
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return convertToHex(input);
+
+
+        return null;
     }
 
-    public static String getHash(byte[] data) {
-        MessageDigest digest = null;
-        byte[] input = null;
+    public static String toHex(byte[] buf) {
 
-        try {
-            digest = MessageDigest.getInstance("SHA-1");
-            digest.reset();
-            input = digest.digest(data);
+        if (buf == null) return "";
 
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
+        int l = buf.length;
+        StringBuffer result = new StringBuffer(2 * l);
+
+        for (int i = 0; i < buf.length; i++) {
+            appendHex(result, buf[i]);
         }
-        return convertToHex(input);
+
+        return result.toString();
+
     }
 
-    private static String convertToHex(byte[] data) {
-        StringBuffer buf = new StringBuffer();
-        for (int i = 0; i < data.length; i++) {
-            int halfbyte = (data[i] >>> 4) & 0x0F;
-            int two_halfs = 0;
-            do {
-                if ((0 <= halfbyte) && (halfbyte <= 9))
-                    buf.append((char) ('0' + halfbyte));
-                else
-                    buf.append((char) ('a' + (halfbyte - 10)));
-                halfbyte = data[i] & 0x0F;
-            } while(two_halfs++ < 1);
-        }
-        return buf.toString();
+    private final static String HEX = "0123456789ABCDEF";
+
+    private static void appendHex(StringBuffer sb, byte b) {
+
+        sb.append(HEX.charAt((b >> 4) & 0x0f))
+                .append(HEX.charAt(b & 0x0f));
+
     }
 
 

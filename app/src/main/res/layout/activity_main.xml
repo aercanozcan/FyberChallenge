@@ -10,4 +10,10 @@
     tools:context="com.ercan.fyberchallenge.MainActivity">
 
 
+    <FrameLayout
+        android:id="@+id/lytFyberFormFragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"></FrameLayout>
 </RelativeLayout>

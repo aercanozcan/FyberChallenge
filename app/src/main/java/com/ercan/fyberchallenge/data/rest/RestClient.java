@@ -1,7 +1,5 @@
 package com.ercan.fyberchallenge.data.rest;
 
-import android.util.Log;
-
 import com.ercan.fyberchallenge.data.model.RequestParam;
 import com.ercan.fyberchallenge.util.CommonUtils;
 import com.squareup.okhttp.Callback;
@@ -35,7 +33,6 @@ public class RestClient {
     public static String buildRequestUrl(List<RequestParam> params, String apiKey){
 
         String parameterString = CommonUtils.stringfyRequestParams(params);
-        Log.e("TEST", CommonUtils.generateHashKey(parameterString,apiKey));
         return API_ROOT + "?" + parameterString + FIELD_HASHKEY+ "=" + CommonUtils.generateHashKey(parameterString,apiKey);
 
     }
