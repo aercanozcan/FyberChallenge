@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgThumbnail"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgThumbnail"
+        android:layout_toEndOf="@+id/imgThumbnail"
+        android:layout_toLeftOf="@+id/txtReward"
+        android:layout_toRightOf="@+id/imgThumbnail"
+        android:text="Title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/lytOfferTypes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtTitle"
+        android:layout_alignStart="@+id/txtTitle"
+        android:layout_below="@+id/txtTitle"
+        android:orientation="horizontal"></LinearLayout>
+
+    <TextView
+        android:id="@+id/txtRequiredActions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lytOfferTypes"
+        android:layout_alignStart="@+id/lytOfferTypes"
+        android:layout_below="@+id/lytOfferTypes"
+        android:layout_toLeftOf="@+id/txtReward"
+        android:layout_toStartOf="@+id/txtReward"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtReward"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/txtRequiredActions"
+        android:layout_centerVertical="true"
+        android:background="@color/colorReward"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFF"
+        android:textStyle="bold" />
+</RelativeLayout>

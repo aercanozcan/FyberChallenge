@@ -5,18 +5,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ercan.fyberchallenge.R;
 import com.ercan.fyberchallenge.data.model.RequestParam;
+import com.ercan.fyberchallenge.data.model.rest.ResponseEnvelope;
 import com.ercan.fyberchallenge.data.rest.RestClient;
 import com.ercan.fyberchallenge.util.CommonUtils;
+import com.google.gson.Gson;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -48,6 +50,8 @@ public class FyberFormFragment extends Fragment {
     @Bind(R.id.btnSubmit)
     Button btnSubmit;
     View rootView;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
     private OnSubmit onSubmitListener;
 
@@ -69,6 +73,9 @@ public class FyberFormFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_fyberform, container, false);
         ButterKnife.bind(this, rootView);
+        edtApiKey.setText("1c915e3b5d42d05136185030892fbb846c278927");
+        edtAppId.setText("2070");
+        edtUID.setText("player2");
         return rootView;
     }
 
@@ -81,8 +88,11 @@ public class FyberFormFragment extends Fragment {
 
     @OnClick(R.id.btnSubmit)
     public void submit() {
+        btnSubmit.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+
         List<RequestParam> params = new ArrayList();
-        String apiKey = null;
+        String apiKey;
 
         if (!TextUtils.isEmpty(edtAppId.getText().toString())) {
             params.add(new RequestParam("appid", edtAppId.getText().toString()));
@@ -112,6 +122,8 @@ public class FyberFormFragment extends Fragment {
                     @Override
                     public void run() {
                         Toast.makeText(getContext(), R.string.warn_get_offers_failed, Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                        btnSubmit.setEnabled(true);
                     }
                 });
 
@@ -121,10 +133,11 @@ public class FyberFormFragment extends Fragment {
             public void onResponse(final Response response) throws IOException {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     if (onSubmitListener != null) {
+                        final ResponseEnvelope responseEnvelope = new Gson().fromJson(response.body().string(), ResponseEnvelope.class);
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                onSubmitListener.onSubmit(response);
+                                onSubmitListener.onSubmit(responseEnvelope);
                             }
                         });
 
@@ -134,16 +147,19 @@ public class FyberFormFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                Log.e("REQUEST", response.body().string());
-                            } catch (Exception e) {
-                            }
-
                             Toast.makeText(getContext(), R.string.warn_get_offers_failed, Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressBar.setVisibility(View.GONE);
+                        btnSubmit.setEnabled(true);
+                    }
+                });
+
 
             }
         });

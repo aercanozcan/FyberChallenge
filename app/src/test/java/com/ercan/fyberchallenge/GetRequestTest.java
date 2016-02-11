@@ -1,4 +1,5 @@
 package com.ercan.fyberchallenge;
+
 import com.ercan.fyberchallenge.data.model.RequestParam;
 import com.ercan.fyberchallenge.data.rest.RestClient;
 import com.ercan.fyberchallenge.util.CommonUtils;
@@ -12,7 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 /**
