@@ -1,12 +1,16 @@
 package com.ercan.fyberchallenge.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
+import android.widget.ListView;
 
 import com.ercan.fyberchallenge.R;
 import com.ercan.fyberchallenge.adapter.OfferListAdapter;
 import com.ercan.fyberchallenge.data.model.Const;
+import com.ercan.fyberchallenge.data.model.rest.Offer;
 import com.ercan.fyberchallenge.data.model.rest.ResponseEnvelope;
 
 import org.parceler.Parcels;
@@ -49,5 +53,12 @@ public class OfferListFragment extends ListFragment {
 
     }
 
-
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Offer offer = ((OfferListAdapter) l.getAdapter()).getItem(position);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(offer.getLink()));
+        startActivity(intent);
+    }
 }
