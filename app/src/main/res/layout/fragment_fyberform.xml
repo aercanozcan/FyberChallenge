@@ -26,6 +26,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:gravity="center_vertical|left"
+            android:nextFocusDown="@+id/edtApiKey"
             android:text="@string/input_uid"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -34,7 +35,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="4" />
+            android:layout_weight="4"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/edtApiKey" />
 
     </LinearLayout>
 
@@ -62,7 +65,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="4" />
+            android:layout_weight="4"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/edtAppId" />
 
     </LinearLayout>
 
@@ -90,7 +95,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="4" />
+            android:layout_weight="4"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/lytPub0" />
 
     </LinearLayout>
 
@@ -133,6 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:imeOptions="actionDone"
             android:text="@string/input_submit" />
     </RelativeLayout>
 </LinearLayout>

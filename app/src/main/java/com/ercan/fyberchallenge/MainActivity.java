@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.ercan.fyberchallenge.data.model.rest.ResponseEnvelope;
+import com.ercan.fyberchallenge.data.rest.RestClient;
 import com.ercan.fyberchallenge.fragment.FyberFormFragment;
 import com.ercan.fyberchallenge.fragment.OfferListFragment;
 import com.ercan.fyberchallenge.fragment.OnSubmit;
@@ -53,5 +54,11 @@ public class MainActivity extends AppCompatActivity implements OnSubmit {
         } else {
             finish();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RestClient.getInstance().cancelRequest(RestClient.REQUEST_TAG);
     }
 }

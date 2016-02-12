@@ -17,6 +17,7 @@ public class RestClient {
     public static final String FORMAT_TYPE_JSON = ".json";
     public static final String OFFERS = "offers";
     public static final String API_ROOT = "http://api.fyber.com/feed/v1/" + OFFERS + FORMAT_TYPE_JSON;
+    public static final String REQUEST_TAG = "offersTag";
     public static RestClient instance;
 
     private final OkHttpClient client = new OkHttpClient();
@@ -39,10 +40,14 @@ public class RestClient {
 
     public void getOffers(List<RequestParam> params, String apiKey,Callback callback){
         Request request = new Request.Builder()
-                .url(RestClient.buildRequestUrl(params,apiKey))
+                .url(RestClient.buildRequestUrl(params, apiKey)).tag(REQUEST_TAG)
                 .build();
         client.newCall(request).enqueue(callback);
 
+    }
+
+    public void cancelRequest(String tag) {
+        client.cancel(tag);
     }
 
 

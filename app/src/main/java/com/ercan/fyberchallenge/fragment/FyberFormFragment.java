@@ -118,6 +118,8 @@ public class FyberFormFragment extends Fragment {
         RestClient.getInstance().getOffers(params, apiKey, new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
+                if (getActivity() == null)
+                    return;
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -131,6 +133,7 @@ public class FyberFormFragment extends Fragment {
 
             @Override
             public void onResponse(final Response response) throws IOException {
+
                 if (response.code() == HttpURLConnection.HTTP_OK) {
                     if (onSubmitListener != null) {
                         final ResponseEnvelope responseEnvelope = new Gson().fromJson(response.body().string(), ResponseEnvelope.class);
@@ -163,6 +166,5 @@ public class FyberFormFragment extends Fragment {
 
             }
         });
-
     }
 }
