@@ -112,7 +112,7 @@ public class FyberFormFragment extends Fragment {
             apiKey = edtApiKey.getText().toString();
         }
         FyberChallengeApplication.setApiKey(edtApiKey.getText().toString());
-        params.add(new RequestParam("ip", "109.235.143.113"));
+        params.add(new RequestParam("ip", CommonUtils.getIPAddress(true)));
         params.add(new RequestParam("locale", "de"));
         params.add(new RequestParam("device_id", "2b6f0cc904d137be2e1730235f5664094b831186"));
         params.add(new RequestParam("timestamp", CommonUtils.getUnixTimeStamp()));
