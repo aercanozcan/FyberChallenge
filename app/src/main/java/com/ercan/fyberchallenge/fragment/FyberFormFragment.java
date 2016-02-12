@@ -13,11 +13,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ercan.fyberchallenge.FyberChallengeApplication;
 import com.ercan.fyberchallenge.R;
 import com.ercan.fyberchallenge.data.model.RequestParam;
 import com.ercan.fyberchallenge.data.model.rest.ResponseEnvelope;
 import com.ercan.fyberchallenge.data.rest.RestClient;
 import com.ercan.fyberchallenge.util.CommonUtils;
+import com.ercan.fyberchallenge.util.Sha1;
 import com.google.gson.Gson;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
@@ -109,7 +111,7 @@ public class FyberFormFragment extends Fragment {
         } else {
             apiKey = edtApiKey.getText().toString();
         }
-
+        FyberChallengeApplication.setApiKey(edtApiKey.getText().toString());
         params.add(new RequestParam("ip", "109.235.143.113"));
         params.add(new RequestParam("locale", "de"));
         params.add(new RequestParam("device_id", "2b6f0cc904d137be2e1730235f5664094b831186"));
@@ -135,8 +137,16 @@ public class FyberFormFragment extends Fragment {
             public void onResponse(final Response response) throws IOException {
 
                 if (response.code() == HttpURLConnection.HTTP_OK) {
+
+                    String reponseBody = new String(response.body().string());
+                    String hashkey = new String(response.header(RestClient.HASHKEY_HEADER));
+
+                    if (!Sha1.getHash(reponseBody + FyberChallengeApplication.API_KEY).equalsIgnoreCase(hashkey)) {// check haskey
+                        onFailure(response.request(), new IOException("INVALID HASHKEY"));
+                        return;
+                    }
                     if (onSubmitListener != null) {
-                        final ResponseEnvelope responseEnvelope = new Gson().fromJson(response.body().string(), ResponseEnvelope.class);
+                        final ResponseEnvelope responseEnvelope = new Gson().fromJson(reponseBody, ResponseEnvelope.class);
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

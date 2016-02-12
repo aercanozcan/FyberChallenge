@@ -18,11 +18,13 @@ public class RestClient {
     public static final String OFFERS = "offers";
     public static final String API_ROOT = "http://api.fyber.com/feed/v1/" + OFFERS + FORMAT_TYPE_JSON;
     public static final String REQUEST_TAG = "offersTag";
+    public static final String HASHKEY_HEADER = "X-Sponsorpay-Response-Signature";
     public static RestClient instance;
 
     private final OkHttpClient client = new OkHttpClient();
 
     private RestClient(){
+
     }
 
     public static RestClient getInstance(){
