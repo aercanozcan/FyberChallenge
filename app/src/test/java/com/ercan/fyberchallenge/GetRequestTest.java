@@ -1,8 +1,8 @@
 package com.ercan.fyberchallenge;
 
-import com.ercan.fyberchallenge.data.model.RequestParam;
-import com.ercan.fyberchallenge.data.rest.RestClient;
-import com.ercan.fyberchallenge.util.CommonUtils;
+import com.fyber.fybersdk.data.model.RequestParam;
+import com.fyber.fybersdk.data.rest.RestClient;
+import com.fyber.fybersdk.util.CommonUtils;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;

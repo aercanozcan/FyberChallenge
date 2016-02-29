@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FyberChallenge.iml" filepath="$PROJECT_DIR$/FyberChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FyberChallenge.iml" filepath="$PROJECT_DIR$/FyberChallenge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fybersdk/fybersdk.iml" filepath="$PROJECT_DIR$/fybersdk/fybersdk.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,6 @@
 package com.ercan.fyberchallenge;
 
-import com.ercan.fyberchallenge.util.Sha1;
+import com.fyber.fybersdk.util.Sha1;
 
 import org.junit.Test;
 

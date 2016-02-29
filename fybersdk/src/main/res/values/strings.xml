@@ -8,5 +8,5 @@
     <string name="warn_input_apikey">The Api Key field must be filled.</string>
     <string name="warn_get_offers_failed">Offers can not be fetched.</string>
     <string name="warn_no_offers_to_display">These are not the offers you are looking for.</string>
-    <string name="btn_caption">Show me the money</string>
+    <string name="title_activity_offer_wall_activiy">OfferWallActiviy</string>
 </resources>
